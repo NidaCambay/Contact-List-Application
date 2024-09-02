@@ -4,14 +4,13 @@ from flaskext.mysql import MySQL
 # Create an object named app
 app = Flask(__name__)
 db_endpoint = open("/home/ec2-user/Contact-List-Application/tfrds.endpoint", 'r', encoding='UTF-8')
-db_name = open("/home/ec2-user/Contact-List-Application/tfrds.name", 'r', encoding='UTF-8')
 
 
 # Configure mysql database
 app.config['MYSQL_DATABASE_HOST'] = db_endpoint.readline().strip()
 app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'admin123'
-app.config['MYSQL_DATABASE_DB'] = db_name.readline().strip()
+app.config['MYSQL_DATABASE_DB'] = 'tfrds'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 db_endpoint.close()
 mysql = MySQL()
@@ -20,10 +19,10 @@ connection = mysql.connect()
 connection.autocommit(True)
 cursor = connection.cursor()
 def init_contact_list_db():
-    db_name = open("/home/ec2-user/Contact-List-Application/tfrds.name", 'r', encoding='UTF-8')
-    db_name_value = db_name.readline().strip()
+
+   
     contact_table = f"""
-    CREATE TABLE IF NOT EXISTS {db_name_value}.contact_list(
+    CREATE TABLE IF NOT EXISTS tfrds.contact_list(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     number VARCHAR(100) NOT NULL,
