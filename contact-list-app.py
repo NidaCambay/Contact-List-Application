@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 from flaskext.mysql import MySQL
 
 # Create an object named app
-app = Flask(_name_)
+app = Flask(__name__)
 
 db_endpoint = open("/home/ec2-user/Contact-List-Application/tfrds.endpoint", 'r', encoding='UTF-8') 
 db_name = open("/home/ec2-user/Contact-List-Application/tfrds.name", 'r', encoding='UTF-8')
